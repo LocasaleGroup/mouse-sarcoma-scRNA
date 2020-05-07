@@ -39,7 +39,7 @@ if(file.exists(file.path(out.dir,"diff_result.rds"))){
   saveRDS(diff_result,file.path(out.dir,"diff_result.rds"))
 }
 ##calculate the cohens' d 
-tumor.data <- as.matrix(GetAssayData(tumor.obj,assay="RNA",slot="data"))
+tumor.data <- GetAssayData(tumor.obj,assay="RNA",slot="data") %>% data.matrix %>% expm1
 group_dig <- which(tumor.obj$orig.group=="dig")
 group_veh <- which(tumor.obj$orig.group=="veh")
 cohen_d <- cal_cohend_matrix(tumor.data,group_veh,group_dig)
