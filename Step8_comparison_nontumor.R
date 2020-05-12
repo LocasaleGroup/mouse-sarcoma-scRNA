@@ -76,7 +76,7 @@ for(i in compared_cluster){
   response_pval_adj_df_d[rownames(diff_result),i] <- -log10(diff_result$p_val_adj) * sign(diff_result$avg_logFC)
   
   #calculate the Cohen's d
-  cluster_i_data <- GetAssayData(cluster_i_obj,assay="RNA",slot="data") %>% data.matrix %>% expm1
+  cluster_i_data <- GetAssayData(cluster_i_obj,assay="RNA",slot="data") %>% data.matrix 
   group_dig <- which(cluster_i_obj$orig.group=="dig")
   group_veh <- which(cluster_i_obj$orig.group=="veh")
   cohen_d <- cal_cohend_matrix(cluster_i_data,group_veh,group_dig)
